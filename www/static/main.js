@@ -91,67 +91,6 @@ $(document).ready(function() {
 	}
 
 	// other
-
-	window.audioSetTimeEvents = function(audio, events) {
-		$(audio).on("timeupdate", function() {
-			for (var key in events) {
-				if (this.currentTime > key) {
-					if (typeof events[key] === "function") {
-						events[key]();
-					} else {
-						var obj = (events[key][0] || window);
-						obj[events[key][1]].apply(obj, events[key][2]);
-					}
-					delete events[key];
-				}
-			}
-		});
-	}
-
-	window.audioStart = function(audio, time, fadein_time) {
-		audio.currentTime = time;
-		if (fadein_time) {
-			audio.volume = 0;
-			$(audio).on("timeupdate", function fn() {
-				var dt = this.currentTime - time;
-				if (dt < fadein_time) {
-					this.volume = dt/fadein_time;
-				} else {
-					this.volume = 1;
-					$(audio).off("timeupdate", fn);
-				}
-			});
-		} else {
-			audio.volume = 1;
-		}
-		audio.play();
-	}
-
-	window.tryPlayAudio = function(audio, time, fadein_time) {
-		function doPlayAudio() {
-			audioStart(audio, time, fadein_time);
-			setTimeout(function() {
-				if (audio.paused) {
-					// mobile browser? we need user interaction
-					$(document).click(function fn() {
-						$(this).off("click", fn);
-						showSubtitle(null);
-						audio.play();
-					});
-					showSubtitle("(tap the screen)", -1);
-				}
-			}, 100);
-		}
-		if (audio.readyState == 4) {
-			doPlayAudio()
-		} else {
-			$(audio).on("canplay", function fn() {
-				$(this).off("canplay", fn);
-				doPlayAudio();
-			});
-		}
-	}
-
 	window.showSubtitle = function(text, time) {
 		var $subtitle = $("#subtitle");
 		if (!text) {
@@ -168,3 +107,16 @@ $(document).ready(function() {
 	}
 
 });
+
+
+function raavUI(){
+	$(document.body).removeClass("color-invert");
+	samaritan.textBlack("Booting");
+	setTimeout(placeholder, 1000);
+	samaritan.textAnimate("Hello There User");
+	setTimeout(placeholder, 1000);
+	samaritan.textBlack("Booting");
+}
+function placeholder(){
+	placeholder = 0;
+}

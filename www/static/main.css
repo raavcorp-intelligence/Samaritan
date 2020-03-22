@@ -96,12 +96,12 @@ body.color-invert {
 	animation: samaritan-arrow-animation 1000ms alternate infinite linear;
 }
 @-webkit-keyframes samaritan-arrow-animation {
-	from { border-bottom-color: #330000; }
-	to { border-bottom-color: #cc0000; }
+	from { border-bottom-color: #9798ff; }
+	to { border-bottom-color: #2427ee; }
 }
 @keyframes samaritan-arrow-animation {
-	from { border-bottom-color: #330000; }
-	to { border-bottom-color: #cc0000; }
+	from { border-bottom-color: #9798ff; }
+	to { border-bottom-color: #2427ee; }
 }
 
 #samaritan .message-box {
